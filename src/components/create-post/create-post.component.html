@@ -1,0 +1,19 @@
+<h2>Create New Post</h2>
+<form (ngSubmit)="submitPost()">
+  <label>
+    Title:
+    <input [(ngModel)]="post.title" name="title" placeholder="Title" required />
+  </label>
+  <label>
+    Content:
+    <textarea [(ngModel)]="post.content" name="content" placeholder="Content" required></textarea>
+  </label>
+  <label>
+    Date:
+    <input [(ngModel)]="post.date" name="date" placeholder="YYYY-MM-DD" required />
+  </label>
+  <div *ngIf="error" style="color: red">{{error}}</div>
+  <button type="submit" [disabled]="loading">
+    {{loading ? 'Submitting...' : 'Create Post'}}
+  </button>
+</form>
