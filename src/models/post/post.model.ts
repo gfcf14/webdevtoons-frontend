@@ -1,5 +1,12 @@
+export interface Link {
+  type: string;
+  url: string;
+}
+
 export interface Post {
-  content: string;
   date: string;
+  description: string;
+  image: string;
+  links: Link[];
   title: string;
 }

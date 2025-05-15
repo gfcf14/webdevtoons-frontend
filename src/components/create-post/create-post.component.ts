@@ -13,19 +13,28 @@ import { PostService } from '../../services/post/post.service';
   styleUrl: './create-post.component.scss'
 })
 export class CreatePostComponent {
-  post: Post = {title: '', content: '', date: ''};
+  post: Post = {
+    date: '',
+    description: '',
+    image: '',
+    links: [],
+    title: '',
+  };
   loading = false;
   error: string | null = null;
 
   constructor(private postService: PostService, private router: Router) {}
 
+  addLink() {
+    this.post.links.push({type: '', url: ''});
+  }
+
+  removeLink(index: number) {
+    this.post.links.splice(index, 1);
+  }
+
   submitPost(): void {
     this.postService.createPost(this.post).subscribe((newPost) => {
-      if (!this.post.title || !this.post.date || !this.post.content) {
-        this.error = 'All fields are required.';
-        return;
-      }
-
       this.loading = true;
       this.postService.createPost(this.post).subscribe({
         next: () => {

@@ -5,13 +5,32 @@
     <input [(ngModel)]="post.title" name="title" placeholder="Title" required />
   </label>
   <label>
-    Content:
-    <textarea [(ngModel)]="post.content" name="content" placeholder="Content" required></textarea>
-  </label>
-  <label>
     Date:
     <input [(ngModel)]="post.date" name="date" placeholder="YYYY-MM-DD" required />
   </label>
+  <label>
+    Description:
+    <textarea [(ngModel)]="post.description" name="description" required></textarea>
+  </label>
+  <label>
+    Image URL:
+    <input [(ngModel)]="post.image" name="image" required />
+  </label>
+
+  <h3>Links</h3>
+  <div *ngFor="let link of post.links; let i = index">
+    <label>
+      Type:
+      <input [(ngModel)]="link.type" name="linkType{{i}}" required />
+    </label>
+    <label>
+      URL:
+      <input [(ngModel)]="link.url" name="linkUrl{{i}}" required />
+    </label>
+    <button type="button" (click)="removeLink(i)">Remove</button>
+  </div>
+  <button type="button" (click)="addLink()">Add Link</button>
+
   <div *ngIf="error" style="color: red">{{error}}</div>
   <button type="submit" [disabled]="loading">
     {{loading ? 'Submitting...' : 'Create Post'}}
