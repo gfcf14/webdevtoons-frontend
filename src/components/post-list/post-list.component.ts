@@ -31,4 +31,8 @@ export class PostListComponent implements OnInit {
       }
     });
   }
+
+  getLink(date: string): string {
+    return `/${date}`;
+  }
 }

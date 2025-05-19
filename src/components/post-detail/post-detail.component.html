@@ -1,0 +1,18 @@
+<div *ngIf="loading">Loading post...</div>
+<div *ngIf="error">{{error}}</div>
+
+<div *ngIf="post && !loading && !error">
+  <h2>{{post.title}}</h2>
+  <img [src]="post.image" alt="Image for {{post.title}}" class="post-image" />
+
+  <div *ngIf="post.links?.length">
+    <h3>JOIN THE CONVERSATION</h3>
+    <ul class="link-list">
+      <li *ngFor="let link of post.links">
+        <a [href]="link.url" target="_blank" rel="noopener noreferer">
+          <img [src]="getPlatformIcon(link.type)" [alt]="link.type" />
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
