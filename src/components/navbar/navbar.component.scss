@@ -1,0 +1,32 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid #ccc;
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 100;
+
+  .logo {
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 1.5rem;
+
+    a {
+      text-decoration: none;
+      color: black;
+
+      &.active {
+        font-weight: bold;
+        text-decoration: underline;
+      }
+    }
+  }
+}
