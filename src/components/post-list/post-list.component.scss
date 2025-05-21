@@ -1,0 +1,41 @@
+.archive-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem;
+
+  max-width: 1920px;
+  margin: 0 auto;
+}
+
+.archive-grid li {
+  flex: 1 1 calc(100% / 1 - 1rem); // default to 1 per row
+  display: flex;
+  justify-content: center;
+
+  img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+  }
+}
+
+@media (min-width: 480px) {
+  .archive-grid li {
+    flex: 1 1 calc(50% - 1rem); // 2 per row
+  }
+}
+
+@media (min-width: 768px) {
+  .archive-grid li {
+    flex: 1 1 calc(25% - 1rem); // 4 per row
+  }
+}
+
+@media (min-width: 1280px) {
+  .archive-grid li {
+    flex: 1 1 calc(12.5% - 1rem); // 8 per row
+  }
+}
