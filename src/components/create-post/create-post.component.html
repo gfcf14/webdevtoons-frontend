@@ -1,38 +1,80 @@
-<h2>Create New Post</h2>
-<form (ngSubmit)="submitPost()">
-  <label>
-    Title:
-    <input [(ngModel)]="post.title" name="title" placeholder="Title" required />
+<!-- Login Form -->
+<div *ngIf="!isLoggedIn" class="login-section handdrawn-box">
+  <div class="stop-sign">STOP!</div>
+  <p>
+    This page is only for the owner of the webcomic.<br />
+    If it’s you, please log in:
+  </p>
+
+  <label class="hand-label">
+    Username<br />
+    <input [(ngModel)]="username" name="username" class="hand-input" />
   </label>
-  <label>
-    Date:
-    <input [(ngModel)]="post.date" name="date" placeholder="YYYY-MM-DD" required />
+
+  <label class="hand-label">
+    Password<br />
+    <input
+      type="password"
+      [(ngModel)]="password"
+      name="password"
+      class="hand-input"
+    />
   </label>
+
+  <button (click)="login()" class="hand-button">LOG IN</button>
+
+  <div *ngIf="loginError" class="error">{{ loginError }}</div>
+</div>
+
+<!-- Create Post Form -->
+<form *ngIf="isLoggedIn" (ngSubmit)="submitPost()">
+  <h2>Create a New Post</h2>
+
   <label>
-    Description:
-    <textarea [(ngModel)]="post.description" name="description" required></textarea>
+    Title*
+    <input [(ngModel)]="post.title" name="title" required />
   </label>
+
   <label>
-    Image URL:
+    Image URL*
     <input [(ngModel)]="post.image" name="image" required />
   </label>
 
+  <div class="image-preview" *ngIf="post.image">
+    <img [src]="post.image" alt="Preview" />
+  </div>
+
+  <label>
+    Description
+    <textarea [(ngModel)]="post.description" name="description"></textarea>
+  </label>
+
+  <label>
+    Date*
+    <input [(ngModel)]="post.date" name="date" required />
+  </label>
+
   <h3>Links</h3>
-  <div *ngFor="let link of post.links; let i = index">
+  <div *ngFor="let link of post.links; let i = index" class="link-group">
     <label>
-      Type:
+      Type
       <input [(ngModel)]="link.type" name="linkType{{i}}" required />
     </label>
     <label>
-      URL:
+      URL
       <input [(ngModel)]="link.url" name="linkUrl{{i}}" required />
     </label>
     <button type="button" (click)="removeLink(i)">Remove</button>
   </div>
   <button type="button" (click)="addLink()">Add Link</button>
 
-  <div *ngIf="error" style="color: red">{{error}}</div>
-  <button type="submit" [disabled]="loading">
-    {{loading ? 'Submitting...' : 'Create Post'}}
+  <div *ngIf="error" class="error">{{ error }}</div>
+
+  <button
+    type="submit"
+    [disabled]="loading || !isFormValid()"
+    class="create-btn sticky-btn"
+  >
+    {{ loading ? 'Submitting…' : 'Create Post' }}
   </button>
 </form>

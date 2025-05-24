@@ -10,3 +10,7 @@ export interface Post {
   links: Link[];
   title: string;
 }
+
+export interface TokenResponse {
+  token: string;
+}

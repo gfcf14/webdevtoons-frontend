@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
 import { Post } from '../../models/post/post.model';
 import { PostService } from '../../services/post/post.service';
 
@@ -10,45 +9,83 @@ import { PostService } from '../../services/post/post.service';
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './create-post.component.html',
-  styleUrl: './create-post.component.scss'
+  styleUrls: ['./create-post.component.scss']
 })
 export class CreatePostComponent {
+  // Login state
+  isLoggedIn = false;
+  username = '';
+  password = '';
+  loginError: string | null = null;
+
+  // Post creation form
   post: Post = {
+    title: '',
     date: '',
     description: '',
     image: '',
     links: [],
-    title: '',
   };
+
   loading = false;
   error: string | null = null;
 
-  constructor(private postService: PostService, private router: Router) {}
+  constructor(private postService: PostService) {}
+
+  login() {
+    this.postService.login(this.username, this.password).subscribe({
+      next: (response) => {
+        sessionStorage.setItem('token', response.token); // save token for session only
+        this.isLoggedIn = true;
+        this.loginError = null;
+      },
+      error: (err) => {
+        this.loginError = 'Invalid credentials';
+        console.error('Login failed', err);
+      }
+    });
+  }
 
   addLink() {
-    this.post.links.push({type: '', url: ''});
+    this.post.links.push({ type: '', url: '' });
   }
 
   removeLink(index: number) {
     this.post.links.splice(index, 1);
   }
 
-  submitPost(): void {
-    this.postService.createPost(this.post).subscribe((newPost) => {
-      this.loading = true;
-      this.postService.createPost(this.post).subscribe({
-        next: () => {
-          this.loading = false;
-          console.log(`Post created: ${newPost}`);
+  isFormValid(): boolean {
+    const { title, date, image } = this.post;
+    const hasRequiredFields = title && date && image;
+    const allLinksValid = this.post.links.every(link => link.type && link.url);
+    return !!hasRequiredFields && allLinksValid;
+  }
 
-          this.router.navigate(['/']);
-        },
-        error: (err) => {
-          this.error = 'Failed to create post.';
-          this.loading = false;
-          console.error(err);
-        }
-      });
+  clearForm() {
+    this.post = {
+      title: '',
+      date: '',
+      description: '',
+      image: '',
+      links: [],
+    };
+    this.error = null;
+  }
+
+  submitPost(): void {
+    if (!this.isFormValid()) return;
+
+    this.loading = true;
+    this.postService.createPost(this.post).subscribe({
+      next: () => {
+        this.loading = false;
+        this.clearForm();
+      },
+      error: (err) => {
+        this.error = 'Failed to create post.';
+        this.loading = false;
+        console.error(err);
+      }
     });
   }
 }
