@@ -32,6 +32,25 @@ export class CreatePostComponent {
 
   constructor(private postService: PostService) {}
 
+  ngOnInit(): void {
+    const token = sessionStorage.getItem('token');
+
+    if (token) {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      const expiry = payload.exp * 1000;
+      const now = Date.now();
+
+      if (now < expiry) {
+        this.isLoggedIn = true;
+      } else {
+        sessionStorage.removeItem('token');
+        this.isLoggedIn = false;
+      }
+    } else {
+      this.isLoggedIn = false;
+    }
+  }
+
   login() {
     this.postService.login(this.username, this.password).subscribe({
       next: (response) => {
