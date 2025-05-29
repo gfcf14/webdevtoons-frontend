@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpHeaders } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Post } from '../../models/post/post.model';
 import { PostService } from '../../services/post/post.service';
 
@@ -31,7 +32,7 @@ export class CreatePostComponent {
   loading = false;
   error: string | null = null;
 
-  constructor(private postService: PostService) {}
+  constructor(private postService: PostService, private router: Router) {}
 
   ngOnInit(): void {
     const token = sessionStorage.getItem('token');
@@ -64,6 +65,12 @@ export class CreatePostComponent {
         console.error('Login failed', err);
       }
     });
+  }
+
+  logout() {
+    sessionStorage.clear();
+    this.isLoggedIn = false;
+    this.router.navigate(['/']);
   }
 
   addLink() {
