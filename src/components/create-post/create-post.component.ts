@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpHeaders } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { Post } from '../../models/post/post.model';
 import { PostService } from '../../services/post/post.service';
@@ -94,14 +95,23 @@ export class CreatePostComponent {
   submitPost(): void {
     if (!this.isFormValid()) return;
 
+    const token = sessionStorage.getItem('token');
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      ...(token ? { Authorization: `Bearer ${token}` } : {})
+    });
+
     this.loading = true;
-    this.postService.createPost(this.post).subscribe({
+    this.postService.createPost(this.post, headers).subscribe({
       next: () => {
         this.loading = false;
         this.clearForm();
       },
       error: (err) => {
-        this.error = 'Failed to create post.';
+        this.error = err.status === 401 ?
+          'Unauthorized: Please log in with a user that can post.' :
+          'Failed to create post.';
         this.loading = false;
         console.error(err);
       }

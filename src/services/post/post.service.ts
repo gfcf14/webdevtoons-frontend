@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { Post, TokenResponse } from "../../models/post/post.model";
@@ -21,8 +21,8 @@ export class PostService {
     return this.http.get<Post>(`${this.apiUrl}/${date}`);
   }
 
-  createPost(post: Post): Observable<Post> {
-    return this.http.post<Post>(this.apiUrl, post);
+  createPost(post: Post, headers: HttpHeaders): Observable<Post> {
+    return this.http.post<Post>(this.apiUrl, post, { headers });
   }
 
   login(username: string, password: string): Observable<TokenResponse> {
