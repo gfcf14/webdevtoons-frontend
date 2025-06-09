@@ -32,6 +32,8 @@ export class CreatePostComponent {
   loading = false;
   error: string | null = null;
 
+  previewOpen = false;
+
   constructor(private postService: PostService, private router: Router) {}
 
   ngOnInit(): void {
@@ -51,6 +53,14 @@ export class CreatePostComponent {
     } else {
       this.isLoggedIn = false;
     }
+  }
+
+  openPreview() {
+    this.previewOpen = true;
+  }
+
+  closePreview() {
+    this.previewOpen = false;
   }
 
   login() {

@@ -1,24 +1,21 @@
 .archive-grid {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   gap: 1rem;
-  padding: 1rem;
-
-  max-width: 1920px;
+  justify-content: center;
   margin: 0 auto;
+  padding: 1rem;
 }
 
 .archive-grid li {
-  flex: 1 1 calc(100% / 1 - 1rem); // default to 1 per row
   display: flex;
+  flex: 1 1 calc(100% / 1 - 1rem); // default to 1 per row
   justify-content: center;
 
   img {
-    width: 100%;
-    max-width: 100%;
     height: auto;
-    border-radius: 0.5rem;
+    max-width: 100%;
+    width: 100%;
   }
 }
 

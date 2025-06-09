@@ -1,5 +1,3 @@
-<h2>Blog Posts</h2>
-<a routerLink="/create">Create New Post</a>
 <ul class="archive-grid">
   <li *ngFor="let post of posts">
     <a [routerLink]="getLink(post.date)">

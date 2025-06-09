@@ -1,81 +1,92 @@
-<!-- Login Form -->
-<div *ngIf="!isLoggedIn" class="login-section handdrawn-box">
-  <div class="stop-sign">STOP!</div>
-  <p>
-    This page is only for the owner of the webcomic.<br />
-    If it’s you, please log in:
-  </p>
-
-  <label class="hand-label">
-    Username<br />
-    <input [(ngModel)]="username" name="username" class="hand-input" />
-  </label>
-
-  <label class="hand-label">
-    Password<br />
-    <input
-      type="password"
-      [(ngModel)]="password"
-      name="password"
-      class="hand-input"
-    />
-  </label>
-
-  <button (click)="login()" class="hand-button">LOG IN</button>
-
-  <div *ngIf="loginError" class="error">{{ loginError }}</div>
+<div *ngIf="previewOpen" class="cntr-preview" (click)="closePreview()">
+  <span role="button" class="btn-close-preview" (click)="closePreview()">
+    <img class="img-close-preview" src="assets/icons/plus-sign.webp" alt="Close Preview Button" />
+  </span>
+  <img class="img-preview" [src]="post.image" alt="Preview Image" />
 </div>
 
-<!-- Create Post Form -->
-<form *ngIf="isLoggedIn" (ngSubmit)="submitPost()" class="frm-create">
-  <button (click)="logout()" class="logout-btn">LOG OUT</button>
-  <h2>Create a New Post</h2>
+<div class="cntr-main">
+  <!-- Login Form -->
+  <div *ngIf="!isLoggedIn" class="cntr-login">
+    <img class="img-stop" src="assets/images/stop.webp">
+    <p class="txt-warning">
+      This page is only for the owner of the webcomic. If it’s you, please log in:
+    </p>
 
-  <label>
-    Title*
-    <input [(ngModel)]="post.title" name="title" required />
-  </label>
+    <label class="frm-label">
+      Username
+      <input [(ngModel)]="username" name="username" class="hand-input" />
+    </label>
 
-  <label>
-    Image URL*
-    <input [(ngModel)]="post.image" name="image" required />
-  </label>
+    <label class="frm-label">
+      Password
+      <input
+        type="password"
+        [(ngModel)]="password"
+        name="password"
+        class="hand-input"
+      />
+    </label>
 
-  <div class="image-preview" *ngIf="post.image">
-    <img [src]="post.image" alt="Preview" />
+    <button (click)="login()">LOG IN</button>
+
+    <p *ngIf="loginError" class="txt-error">{{ loginError }}</p>
   </div>
 
-  <label>
-    Description
-    <textarea [(ngModel)]="post.description" name="description"></textarea>
-  </label>
+  <!-- Create Post Form -->
+  <form *ngIf="isLoggedIn" (ngSubmit)="submitPost()" class="frm-create">
+    <span role="button" (click)="logout()" class="btn-logout">LOG OUT</span>
+    <h2>NEW POST</h2>
 
-  <label>
-    Date*
-    <input [(ngModel)]="post.date" name="date" required />
-  </label>
+    <input [(ngModel)]="post.title" name="title" placeholder="Title" required />
 
-  <h3>Links</h3>
-  <div *ngFor="let link of post.links; let i = index" class="link-group">
-    <label>
-      Type
-      <input [(ngModel)]="link.type" name="linkType{{i}}" required />
-    </label>
-    <label>
-      URL
-      <input [(ngModel)]="link.url" name="linkUrl{{i}}" required />
-    </label>
-    <button type="button" (click)="removeLink(i)">Remove</button>
+    <div class="cntr-image">
+      <input [(ngModel)]="post.image" name="image" placeholder="Image" required />
+      <span role="button" class="btn-mobile-preview">
+        <img class="img-eye" src="assets/icons/eye.webp" alt="Mobile Image Preview Button" (click)="openPreview()" />
+      </span>
+    </div>
+
+    <textarea [(ngModel)]="post.description" name="description" placeholder="Description"></textarea>
+
+    <div class="cntr-date">
+      <span role="button" class="btn-calendar">
+        <img class="img-calendar" src="assets/icons/calendar.webp" alt="Date Button" />
+      </span>
+      <input [(ngModel)]="post.date" name="date" placeholder="YYYY-MM-DD" required />
+    </div>
+
+    <div class="cntr-links">
+      <div class="cntr-speech-control">
+        <img class="img-speech-bubble" src="assets/icons/speech-bubble.webp" alt="Speech Bubble Image" />
+        <span role="button" class="btn-add-link" (click)="addLink()">
+          <img class="img-add-link" src="assets/icons/plus-sign.webp" alt="Add New Link Button" />
+        </span>
+      </div>
+
+      <div *ngIf="post.links.length > 0" class="cntr-link-list">
+        <div *ngFor="let link of post.links; let i = index" class="link-group">
+          <div class="cntr-link-data">
+            <input [(ngModel)]="link.type" name="link-type-{{i}}" placeholder="Type" required />
+            <input [(ngModel)]="link.url" name="link-url-{{i}}" placeholder="Url" required />
+          </div>
+          <span role="button" class="btn-trash-bin" (click)="removeLink(i)">
+            <img class="img-trash-bin" src="assets/icons/trash-bin.webp" alt="Link Delete Button" />
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="error" class="error">{{ error }}</div>
+  </form>
+
+  <div *ngIf="isLoggedIn" class="cntr-create-post-button">
+    <button
+      type="submit"
+      [disabled]="loading || !isFormValid()"
+      class="btn-create-post"
+    >
+      {{ loading ? 'Submitting…' : 'CREATE POST' }}
+    </button>
   </div>
-  <button type="button" (click)="addLink()">Add Link</button>
-
-  <div *ngIf="error" class="error">{{ error }}</div>
-
-  <button
-    type="submit"
-    [disabled]="loading || !isFormValid()"
-    class="create-btn sticky-btn"
-  >
-    {{ loading ? 'Submitting…' : 'Create Post' }}
-  </button>
-</form>
+</div>
