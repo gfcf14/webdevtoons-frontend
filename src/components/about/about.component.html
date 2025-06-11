@@ -1,0 +1,12 @@
+<div class="cntr-main">
+  <div class="cntr-about">
+    <img class="img-avatar" src="assets/images/me.webp" alt="About Me Image" />
+    <p class="txt-about">Hi! I made this page to house all of my work related to the WebDevToons webcomic. It should be updated periodically following the webcomic's schedule (every Monday). If you however wish to follow this webcomic in more popular networks, please feel free to follow my social sites related to it:</p>
+  </div>
+  <div class="cntr-social-links">
+      <a *ngFor="let link of socialLinks" [href]="link.url" class="link-social" target="_blank" rel="noopener noreferer">
+        <img class="img-social-link" [src]="getPlatformIcon(link.type)" alt="{{link.type}} social link image" />
+        <p>{{link.type | titlecase}}</p>
+      </a>
+  </div>
+</div>
