@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
+import { BreakpointObserver } from '@angular/cdk/layout';
 import { CommonModule } from '@angular/common';
 import { HttpHeaders } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { map, Observable, shareReplay } from 'rxjs';
 import { Post } from '../../models/post/post.model';
 import { PostService } from '../../services/post/post.service';
 
@@ -34,7 +36,28 @@ export class CreatePostComponent {
 
   previewOpen = false;
 
-  constructor(private postService: PostService, private router: Router) {}
+  deviceType$: Observable<'mobile' | 'tablet' | 'desktop'>;
+
+  constructor(private postService: PostService, private router: Router, private breakpointObserver: BreakpointObserver) {
+    this.deviceType$ = this.breakpointObserver
+      .observe([
+        '(max-width: 767px)', // mobile
+        '(min-width: 768px) and (max-width: 1023px)', // tablet
+        '(min-width: 1024px)' // desktop
+      ])
+      .pipe(
+        map(({ breakpoints }) => {
+          if (breakpoints['(max-width: 767px)']) {
+            return 'mobile';
+          } else if (breakpoints['(min-width: 768px) and (max-width: 1023px)']) {
+            return 'tablet';
+          } else {
+            return 'desktop';
+          }
+        }),
+        shareReplay({ bufferSize: 1, refCount: true })
+      );
+  }
 
   ngOnInit(): void {
     const token = sessionStorage.getItem('token');

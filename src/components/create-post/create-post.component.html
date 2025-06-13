@@ -42,9 +42,11 @@
 
     <div class="cntr-image">
       <input [(ngModel)]="post.image" name="image" placeholder="Image" required />
-      <span role="button" class="btn-mobile-preview">
-        <img class="img-eye" src="assets/icons/eye.webp" alt="Mobile Image Preview Button" (click)="openPreview()" />
-      </span>
+      <ng-container *ngIf="deviceType$ | async as deviceType">
+        <span *ngIf="deviceType === 'mobile'" role="button" class="btn-mobile-preview">
+          <img class="img-eye" src="assets/icons/eye.webp" alt="Mobile Image Preview Button" (click)="openPreview()" />
+        </span>
+      </ng-container>
     </div>
 
     <textarea [(ngModel)]="post.description" name="description" placeholder="Description"></textarea>
@@ -53,7 +55,7 @@
       <span role="button" class="btn-calendar">
         <img class="img-calendar" src="assets/icons/calendar.webp" alt="Date Button" />
       </span>
-      <input [(ngModel)]="post.date" name="date" placeholder="YYYY-MM-DD" required />
+      <input [(ngModel)]="post.date" type="date" name="date" placeholder="YYYY-MM-DD" required />
     </div>
 
     <div class="cntr-links">
