@@ -1,0 +1,22 @@
+.cntr-footer {
+  background: linear-gradient(#005a2b, #006d42);
+  bottom: 0;
+  height: 1rem;
+  padding: 0.5rem;
+  position: fixed;
+  text-align: center;
+  width: 100vw;
+}
+
+.link-greendream {
+  color: #ffffff;
+  font: 400 1rem 'Orbitron', sans-serif;
+  font-size: 0.6rem;
+  text-decoration: none;
+}
+
+@media (min-width: 768px) {
+	.link-greendream {
+		font-size: 0.75rem;
+	}
+}
