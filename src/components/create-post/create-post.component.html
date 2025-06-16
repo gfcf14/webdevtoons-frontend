@@ -7,7 +7,7 @@
 
 <div class="cntr-main">
   <!-- Login Form -->
-  <div *ngIf="!isLoggedIn" class="cntr-login">
+  <form *ngIf="!isLoggedIn" (keydown.enter)="loginOnEnter()" class="cntr-login">
     <img class="img-stop" src="assets/images/stop.webp">
     <p class="txt-warning">
       This page is only for the owner of the webcomic. If it’s you, please log in:
@@ -28,10 +28,10 @@
       />
     </label>
 
-    <button (click)="login()">LOG IN</button>
+    <button [disabled]="!isLoginFormValid()" (click)="login()">LOG IN</button>
 
     <p *ngIf="loginError" class="txt-error">{{ loginError }}</p>
-  </div>
+  </form>
 
   <!-- Create Post Form -->
   <form *ngIf="isLoggedIn" (ngSubmit)="submitPost()" class="frm-create">

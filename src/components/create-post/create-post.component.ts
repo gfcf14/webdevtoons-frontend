@@ -86,6 +86,12 @@ export class CreatePostComponent {
     this.previewOpen = false;
   }
 
+  loginOnEnter() {
+    if (!!this.username && !!this.password) {
+      this.login();
+    }
+  }
+
   login() {
     this.postService.login(this.username, this.password).subscribe({
       next: (response) => {
@@ -114,10 +120,16 @@ export class CreatePostComponent {
     this.post.links.splice(index, 1);
   }
 
+  isLoginFormValid(): boolean {
+    return !!this.username && !!this.password;
+  }
+
   isFormValid(): boolean {
     const { title, date, image } = this.post;
+
     const hasRequiredFields = title && date && image;
     const allLinksValid = this.post.links.every(link => link.type && link.url);
+
     return !!hasRequiredFields && allLinksValid;
   }
 
