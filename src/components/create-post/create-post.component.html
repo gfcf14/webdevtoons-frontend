@@ -38,18 +38,27 @@
     <span role="button" (click)="logout()" class="btn-logout">LOG OUT</span>
     <h2>NEW POST</h2>
 
-    <input [(ngModel)]="post.title" name="title" placeholder="Title" required />
+    <div class="cntr-nonmobile-top-fields">
+      <div class="cntr-title-img-desc">
+        <input [(ngModel)]="post.title" name="title" placeholder="Title" required />
 
-    <div class="cntr-image">
-      <input [(ngModel)]="post.image" name="image" placeholder="Image" required />
+        <div class="cntr-image">
+          <input [(ngModel)]="post.image" name="image" placeholder="Image" required />
+          <ng-container *ngIf="deviceType$ | async as deviceType">
+            <span *ngIf="deviceType === 'mobile'" role="button" class="btn-mobile-preview">
+              <img class="img-eye" src="assets/icons/eye.webp" alt="Mobile Image Preview Button" (click)="openPreview()" />
+            </span>
+          </ng-container>
+        </div>
+
+        <textarea [(ngModel)]="post.description" name="description" placeholder="Description"></textarea>
+      </div>
       <ng-container *ngIf="deviceType$ | async as deviceType">
-        <span *ngIf="deviceType === 'mobile'" role="button" class="btn-mobile-preview">
-          <img class="img-eye" src="assets/icons/eye.webp" alt="Mobile Image Preview Button" (click)="openPreview()" />
-        </span>
+        <div *ngIf="deviceType !== 'mobile'" class="cntr-nonmobile-preview">
+          <img *ngIf="post.image" class="img-nonmobile-preview" [src]="post.image" alt="Preview Image" />
+        </div>
       </ng-container>
     </div>
-
-    <textarea [(ngModel)]="post.description" name="description" placeholder="Description"></textarea>
 
     <div class="cntr-date">
       <span role="button" class="btn-calendar">
