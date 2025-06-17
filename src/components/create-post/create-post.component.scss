@@ -90,6 +90,7 @@ input[placeholder="Image"], input[placeholder="YYYY-MM-DD"] {
 }
 
 .cntr-links {
+  align-items: flex-start;
   display: flex;
   gap: 0.5rem;
   padding: 0 0 4.75rem;
@@ -139,6 +140,7 @@ input[placeholder="Image"], input[placeholder="YYYY-MM-DD"] {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  margin: 0 auto;
   position: relative;
   width: calc(100vw - 1rem);
 }
@@ -241,5 +243,70 @@ input[placeholder="Image"], input[placeholder="YYYY-MM-DD"] {
 
   .frm-label {
     font-size: 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  label[for="date"] {
+    align-items: center;
+    color: #005a2b;
+    display: flex;
+    font: 400 1rem "Orbitron", sans-serif;
+    height: 2.25rem;
+    justify-content: flex-end;
+    width: calc(10% + 0.75rem);
+  }
+
+  .btn-trash-bin {
+    top: 0.25rem;
+  }
+
+  .cntr-labels {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 10%;
+
+    label {
+      align-items: center;
+      color: #005a2b;
+      display: flex;
+      font: 400 1rem "Orbitron", sans-serif;
+      height: 2.25rem;
+      justify-content: flex-end;
+    }
+    label:last-child {
+      align-items: normal;
+      flex-grow: 1;
+    }
+  }
+
+  .cntr-link-data {
+    flex-direction: row;
+
+    input {
+      width: 50%;
+    }
+  }
+
+  .cntr-speech-control {
+    align-items: flex-end;
+    color: #005a2b;
+    display: flex;
+    font: 400 1rem "Orbitron", sans-serif;
+    width: calc(10% + 0.5rem);
+  }
+
+  .cntr-title-img-desc {
+    width: 60%;
+  }
+
+  .cntr-nonmobile-preview {
+    width: 30%;
+  }
+
+  .frm-create {
+    min-width: 63rem; // 64rem (1024px) - 1rem for the body padding
+    max-width: 90rem;
   }
 }

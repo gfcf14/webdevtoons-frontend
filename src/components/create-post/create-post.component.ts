@@ -42,14 +42,14 @@ export class CreatePostComponent {
     this.deviceType$ = this.breakpointObserver
       .observe([
         '(max-width: 767.98px)', // mobile
-        '(min-width: 768px) and (max-width: 1023px)', // tablet
+        '(min-width: 768px) and (max-width: 1023.98px)', // tablet
         '(min-width: 1024px)' // desktop
       ])
       .pipe(
         map(({ breakpoints }) => {
           if (breakpoints['(max-width: 767.98px)']) {
             return 'mobile';
-          } else if (breakpoints['(min-width: 768px) and (max-width: 1023px)']) {
+          } else if (breakpoints['(min-width: 768px) and (max-width: 1023.98px)']) {
             return 'tablet';
           } else {
             return 'desktop';

@@ -39,11 +39,18 @@
     <h2>NEW POST</h2>
 
     <div class="cntr-nonmobile-top-fields">
+      <ng-container *ngIf="deviceType$ | async as deviceType">
+        <div *ngIf="deviceType === 'desktop'" class="cntr-labels">
+          <label for="title">Title</label>
+          <label for="image">Image</label>
+          <label for="description">Description</label>
+        </div>
+      </ng-container>
       <div class="cntr-title-img-desc">
-        <input [(ngModel)]="post.title" name="title" placeholder="Title" required />
+        <input [(ngModel)]="post.title" id="title" name="title" placeholder="Title" required />
 
         <div class="cntr-image">
-          <input [(ngModel)]="post.image" name="image" placeholder="Image" required />
+          <input [(ngModel)]="post.image" id="image" name="image" placeholder="Image" required />
           <ng-container *ngIf="deviceType$ | async as deviceType">
             <span *ngIf="deviceType === 'mobile'" role="button" class="btn-mobile-preview">
               <img class="img-eye" src="assets/icons/eye.webp" alt="Mobile Image Preview Button" (click)="openPreview()" />
@@ -51,7 +58,7 @@
           </ng-container>
         </div>
 
-        <textarea [(ngModel)]="post.description" name="description" placeholder="Description"></textarea>
+        <textarea [(ngModel)]="post.description" id="description" name="description" placeholder="Description"></textarea>
       </div>
       <ng-container *ngIf="deviceType$ | async as deviceType">
         <div *ngIf="deviceType !== 'mobile'" class="cntr-nonmobile-preview">
@@ -61,15 +68,21 @@
     </div>
 
     <div class="cntr-date">
-      <span role="button" class="btn-calendar">
-        <img class="img-calendar" src="assets/icons/calendar.webp" alt="Date Button" />
-      </span>
-      <input [(ngModel)]="post.date" type="date" name="date" placeholder="YYYY-MM-DD" required />
+      <ng-container *ngIf="deviceType$ | async as deviceType">
+        <span *ngIf="deviceType !== 'desktop'" role="button" class="btn-calendar">
+          <img class="img-calendar" src="assets/icons/calendar.webp" alt="Date Button" />
+        </span>
+        <label *ngIf="deviceType === 'desktop'" for="date">Date</label>
+      </ng-container>
+      <input [(ngModel)]="post.date" id="date" name="date" placeholder="YYYY-MM-DD" type="date" required />
     </div>
 
     <div class="cntr-links">
       <div class="cntr-speech-control">
-        <img class="img-speech-bubble" src="assets/icons/speech-bubble.webp" alt="Speech Bubble Image" />
+        <ng-container *ngIf="deviceType$ | async as deviceType">
+          <img *ngIf="deviceType !== 'desktop'" class="img-speech-bubble" src="assets/icons/speech-bubble.webp" alt="Speech Bubble Image" />
+          <span *ngIf="deviceType === 'desktop'">Links</span>
+        </ng-container>
         <span role="button" class="btn-add-link" (click)="addLink()">
           <img class="img-add-link" src="assets/icons/plus-sign.webp" alt="Add New Link Button" />
         </span>
@@ -78,8 +91,8 @@
       <div *ngIf="post.links.length > 0" class="cntr-link-list">
         <div *ngFor="let link of post.links; let i = index" class="link-group">
           <div class="cntr-link-data">
-            <input [(ngModel)]="link.type" name="link-type-{{i}}" placeholder="Type" required />
-            <input [(ngModel)]="link.url" name="link-url-{{i}}" placeholder="Url" required />
+            <input [(ngModel)]="link.type" id="link-type-{{i}}" name="link-type-{{i}}" placeholder="Type" required />
+            <input [(ngModel)]="link.url" id="link-url-{{i}}" name="link-url-{{i}}" placeholder="Url" required />
           </div>
           <span role="button" class="btn-trash-bin" (click)="removeLink(i)">
             <img class="img-trash-bin" src="assets/icons/trash-bin.webp" alt="Link Delete Button" />
