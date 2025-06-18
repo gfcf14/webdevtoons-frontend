@@ -5,15 +5,23 @@
   padding: 1rem;
 }
 
-.post-image {
+.cntr-links {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.img-post {
+  margin: 0 auto;
   width: 100%;
 }
 
 .link-list {
   display: flex;
   gap: 1rem;
+  justify-content: space-evenly;
   list-style: none;
-  justify-content: space-around;
+  margin: 0 auto;
   padding: 0;
 
   li img {
@@ -27,6 +35,8 @@
 .txt-join {
   color: #005a2b;
   font: 600 1.25rem 'Roboto', sans-serif;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .txt-title {
@@ -34,4 +44,20 @@
   font: 600 0.75rem 'Orbitron', sans-serif;
   font-size: 1.25rem;
   margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .img-post {
+    width: 66%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .img-post {
+    width: 30%;
+  }
+
+  .link-list {
+    width: 30%;
+  }
 }
