@@ -22,6 +22,8 @@ export class PostDetailComponent {
     const urlParams = this.route.snapshot.paramMap;
     const date = urlParams.get('date');
 
+    console.log(date);
+
     if (date) {
       this.postService.getPostByDate(date).subscribe({
         next: (data) => {

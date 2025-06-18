@@ -1,0 +1,25 @@
+<ng-container *ngIf="!fadeWhite">
+  <div class="text-container {{slidIn ? 'ready' : ''}}">
+    <div class="code {{codeStatus}}">{{ code }}</div>
+    <h3 class="text">The page you entered doesn't exist. Hyperdrive redirect on 200!</h3>
+  </div>
+</ng-container>
+
+<div class="wrapper {{fadeWhite ? 'white' : ''}}">
+  <div class="scene">
+    <div class="wrap {{shouldAnimate ? 'animate' : ''}}">
+      <div class="wall wall-right {{shouldAnimate ? 'animate' : ''}}"></div>
+      <div class="wall wall-left {{shouldAnimate ? 'animate' : ''}}"></div>
+      <div class="wall wall-top {{shouldAnimate ? 'animate' : ''}}"></div>
+      <div class="wall wall-bottom {{shouldAnimate ? 'animate' : ''}}"></div>
+      <div class="wall wall-back {{shouldAnimate ? 'animate' : ''}}"></div>
+    </div>
+    <div class="wrap {{shouldAnimate ? 'animate' : ''}}">
+      <div class="wall wall-right {{shouldAnimate ? 'animate' : ''}}"></div>
+      <div class="wall wall-left {{shouldAnimate ? 'animate' : ''}}"></div>
+      <div class="wall wall-top {{shouldAnimate ? 'animate' : ''}}"></div>
+      <div class="wall wall-bottom {{shouldAnimate ? 'animate' : ''}}"></div>
+      <div class="wall wall-back {{shouldAnimate ? 'animate' : ''}}"></div>
+    </div>
+  </div>
+</div>

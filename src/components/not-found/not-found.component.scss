@@ -1,0 +1,135 @@
+.code {
+  animation: blur 1s linear infinite;
+  color: #e92d2d;
+  font: bold 32px 'Orbitron', sans-serif;
+}
+.code.warning {
+  color: #bf6830;
+}
+.code.almost {
+  color: #d9a630;
+}
+.code.ready {
+  color: #00805c;
+}
+
+.scene {
+  display: inline-block;
+  perspective: 5px;
+  perspective-origin: 50% 50%;
+  position: relative;
+  vertical-align: middle;
+}
+
+.text {
+  color: #ffffff;
+  font: 24px 'Roboto', sans-serif;
+  width: 180px;
+}
+
+.text-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  left: 0;
+  position: absolute;
+  top: 50%;
+  transform: translate(-100%, -50%);
+  transition: left 0.5s, transform 0.5s ease-in-out;
+}
+.text-container.ready {
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.wall {
+  background: url(/assets/images/green-nebula.jpg);
+  background-size: cover;
+  height: 100%;
+  opacity: 0;
+  position: absolute;
+  width: 100%;
+}
+.wall.animate {
+  animation: fade 5s 5s linear;
+}
+
+.wall-back {
+  transform: rotateX(180deg) translateZ(500px);
+}
+.wall-bottom {
+  transform: rotateX(-90deg) translateZ(500px);
+}
+.wall-left {
+  transform: rotateY(-90deg) translateZ(500px);
+}
+.wall-right {
+  transform: rotateY(90deg) translateZ(500px);
+}
+.wall-top {
+  transform: rotateX(90deg) translateZ(500px);
+}
+
+.wrap {
+  animation-fill-mode: forwards;
+  height: 1000px;
+  left: -500px;
+  position: absolute;
+  top: -500px;
+  transform-style: preserve-3d;
+  width: 1000px;
+}
+.wrap.animate {
+  animation: move 5s 5s linear;
+}
+.wrap:nth-child(2) {
+  animation-delay: 3s;
+}
+.wrap:nth-child(2) .wall {
+  animation-delay: 3s;
+}
+
+.wrapper {
+  background: #000000;
+  height: 100vh;
+  overflow: hidden;
+  text-align: center;
+  width: 100vw;
+}
+.wrapper.white {
+  background: #ffffff;
+}
+.wrapper:before {
+  content: '';
+  display: inline-block;
+  height: 100vh;
+  vertical-align: middle;
+}
+
+@keyframes blur {
+  0% { filter: drop-shadow(0 0 6px); }
+  50% { filter: drop-shadow(0 0 0); }
+  100% { filter: drop-shadow(0 0 6px); }
+}
+
+@keyframes move {
+  0% { transform: translateZ(-500px) rotate(0deg); }
+  100% { transform: translateZ(500px) rotate(0deg); }
+}
+
+@keyframes fade {
+  0% { opacity: 0; }
+  25% { opacity: 1; }
+  75% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@media (min-width: 768px) {
+  .code { font-size: 40px; }
+  .text { font-size: 32px; width: 240px; }
+}
+
+@media (min-width: 1024px) {
+  .code { font-size: 48px; }
+  .text { font-size: 40px; width: 300px; }
+}

@@ -3,6 +3,6 @@
     margin: 0;
   }
 </style>
-<app-navbar />
+<app-navbar *ngIf="showLayout" />
 <router-outlet />
-<app-footer />
+<app-footer *ngIf="showLayout" />
