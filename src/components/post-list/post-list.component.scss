@@ -19,6 +19,43 @@
   }
 }
 
+.cntr-image {
+  position: relative;
+  width: 100%;
+}
+.cntr-image img {
+  display: block;
+  height: auto;
+  width: 100%;
+}
+
+.overlay {
+  align-items: flex-end; /* Text at bottom */
+  background: #00000080;
+  box-sizing: border-box;
+  display: flex;
+  height: 100%;
+  left: 0;
+  opacity: 0;
+  padding: 0.5rem;
+  position: absolute;
+  top: 0;
+  transition: opacity 0.3s ease;
+  width: 100%;
+}
+.overlay-text {
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.9rem;
+}
+.overlay-text .date {
+  font-weight: bold;
+}
+
+.link-post:hover .overlay {
+  opacity: 1;
+}
+
 @media (min-width: 480px) {
   .archive-grid li {
     flex: 1 1 calc(50% - 1rem); // 2 per row
