@@ -3,7 +3,7 @@ import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideHttpClient } from '@angular/common/http';
-import { environment } from '../environments/environment.local';
+import { environment } from '../environments/environment.development';
 
 export const API_BASE_URL = new InjectionToken<string>('API_BASE_URL');
 
@@ -13,7 +13,7 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
     {
       provide: API_BASE_URL,
-      useValue: environment.apiBaseUrl
+      useValue: environment['API_URL']
     }
   ]
 };
