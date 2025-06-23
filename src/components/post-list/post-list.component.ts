@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Post } from '../../models/post/post.model';
 import { PostService } from '../../services/post/post.service';
 import { RouterModule } from '@angular/router';
+import { LoaderService } from '../../services/loader/loader.service';
 
 @Component({
   selector: 'app-post-list',
@@ -13,20 +14,21 @@ import { RouterModule } from '@angular/router';
 })
 export class PostListComponent implements OnInit {
   posts: Post[] = [];
-  loading = true;
   error: string | null = null;
 
-  constructor(private postService: PostService) {}
+  constructor(private postService: PostService, private loader: LoaderService) {}
 
   ngOnInit(): void {
+    this.loader.show();
+
     this.postService.getAllPosts().subscribe({
       next: (data) => {
         this.posts = data;
-        this.loading = false;
+        this.loader.hide();
       },
       error: (err) => {
         this.error = 'Failed to fetch posts';
-        this.loading = false;
+        this.loader.hide();
         console.error(err);
       }
     });

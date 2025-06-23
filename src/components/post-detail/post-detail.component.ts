@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { Post } from '../../models/post/post.model';
 import { ActivatedRoute } from '@angular/router';
 import { PostService } from '../../services/post/post.service';
+import { LoaderService } from '../../services/loader/loader.service';
 
 @Component({
   selector: 'app-post-detail',
@@ -16,21 +17,25 @@ export class PostDetailComponent {
   loading = true;
   error: string | null = null;
 
-  constructor(private route: ActivatedRoute, private postService: PostService) {}
+  constructor(private route: ActivatedRoute, private postService: PostService, private loader: LoaderService) {}
 
   ngOnInit(): void {
     const urlParams = this.route.snapshot.paramMap;
     const date = urlParams.get('date');
+
+    this.loader.show();
 
     if (date) {
       this.postService.getPostByDate(date).subscribe({
         next: (data) => {
           this.post = data;
           this.loading = false;
+          this.loader.hide();
         },
         error: (err) => {
           this.error = 'Failed to load post',
           this.loading = false;
+          this.loader.hide();
           console.error(err);
         }
       })
