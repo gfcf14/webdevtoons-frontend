@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Post } from '../../models/post/post.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PostService } from '../../services/post/post.service';
 import { LoaderService } from '../../services/loader/loader.service';
 
@@ -17,7 +17,7 @@ export class PostDetailComponent {
   loading = true;
   error: string | null = null;
 
-  constructor(private route: ActivatedRoute, private postService: PostService, private loader: LoaderService) {}
+  constructor(private route: ActivatedRoute, private postService: PostService, private loader: LoaderService, private router: Router) {}
 
   ngOnInit(): void {
     const urlParams = this.route.snapshot.paramMap;
@@ -28,6 +28,11 @@ export class PostDetailComponent {
     if (date) {
       this.postService.getPostByDate(date).subscribe({
         next: (data) => {
+          if (data.date !== date) {
+            // must redirect to matched post date
+            this.router.navigate(['/', data.date], { replaceUrl: true });
+          }
+
           this.post = data;
           this.loading = false;
           this.loader.hide();
