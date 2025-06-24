@@ -34,7 +34,7 @@
   </form>
 
   <!-- Create Post Form -->
-  <form *ngIf="isLoggedIn" (ngSubmit)="submitPost()" class="frm-create">
+  <form *ngIf="isLoggedIn" (ngSubmit)="submitPost()" class="frm-create" id="create-form">
     <span role="button" (click)="logout()" class="btn-logout">LOG OUT</span>
     <h2>NEW POST</h2>
 
@@ -105,8 +105,9 @@
   <div *ngIf="isLoggedIn" class="cntr-create-post-button">
     <button
       [disabled]="loading || !isFormValid()"
-      (click)="submitPost()"
       class="btn-create-post"
+      form="create-form"
+      type="submit"
     >
       CREATE POST
     </button>
