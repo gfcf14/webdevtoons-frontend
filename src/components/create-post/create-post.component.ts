@@ -9,6 +9,7 @@ import { Post } from '../../models/post/post.model';
 import { PostService } from '../../services/post/post.service';
 import { LoaderService } from '../../services/loader/loader.service';
 import { FlashMessageService } from '../../services/flash-message/flash-message.service';
+import { LoginService } from '../../services/login/login.service';
 
 @Component({
   selector: 'app-create-post',
@@ -40,7 +41,7 @@ export class CreatePostComponent {
 
   deviceType$: Observable<'mobile' | 'tablet' | 'desktop'>;
 
-  constructor(private postService: PostService, private router: Router, private loader: LoaderService, private flash: FlashMessageService, private breakpointObserver: BreakpointObserver) {
+  constructor(private postService: PostService, private loginService: LoginService, private router: Router, private loader: LoaderService, private flash: FlashMessageService, private breakpointObserver: BreakpointObserver) {
     this.deviceType$ = this.breakpointObserver
       .observe([
         '(max-width: 767.98px)', // mobile
@@ -97,7 +98,7 @@ export class CreatePostComponent {
   login() {
     this.loader.show();
 
-    this.postService.login(this.username, this.password).subscribe({
+    this.loginService.login(this.username, this.password).subscribe({
       next: (response) => {
         sessionStorage.setItem('token', response.token); // save token for session only
         this.isLoggedIn = true;
