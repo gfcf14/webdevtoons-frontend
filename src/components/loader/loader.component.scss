@@ -11,19 +11,19 @@
 .triple-spinner {
   -webkit-animation: spin 1s linear infinite;
   animation: spin 1s linear infinite;
-  border: 4px solid transparent;
+  border: 0.25rem solid transparent;
   border-radius: 50%;
-  border-top: 4px solid #005a2b;
+  border-top: 0.25rem solid #005a2b;
   display: block;
-  height: 100px;
+  height: 6.25rem;
   margin: auto;
   position: relative;
-  width: 100px;
+  width: 6.25rem;
 }
 
 .triple-spinner::before,
 .triple-spinner::after {
-  border: 4px solid transparent;
+  border: 0.25rem solid transparent;
   border-radius: 50%;
   content: "";
   position: absolute;
@@ -32,32 +32,32 @@
   -webkit-animation: spin 1.5s linear infinite;
   animation: spin 1.75s linear infinite;
   border-top-color: #006d42;
-  bottom: 5px;
-  left: 5px;
-  right: 5px;
-  top: 5px;
+  bottom: 0.3125rem;
+  left: 0.3125rem;
+  right: 0.3125rem;
+  top: 0.3125rem;
 }
 .triple-spinner::after {
   -webkit-animation: spin 0.75s linear infinite;
   animation: spin 0.875s linear infinite;
   border-top-color: #00b456;
-  bottom: 15px;
-  left: 15px;
-  right: 15px;
-  top: 15px;
+  bottom: 0.9375rem;
+  left: 0.9375rem;
+  right: 0.9375rem;
+  top: 0.9375rem;
 }
 
 @media (min-width: 768px) {
   .triple-spinner {
-    height: 125px;
-    width: 125px;
+    height: 7.8125rem;
+    width: 7.8125rem;
   }
 }
 
 @media (min-width: 1024px) {
   .triple-spinner {
-    height: 150px;
-    width: 150px;
+    height: 9.375rem;
+    width: 9.375rem;
   }
 }
 

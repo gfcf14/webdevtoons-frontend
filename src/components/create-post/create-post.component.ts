@@ -8,6 +8,7 @@ import { map, Observable, shareReplay } from 'rxjs';
 import { Post } from '../../models/post/post.model';
 import { PostService } from '../../services/post/post.service';
 import { LoaderService } from '../../services/loader/loader.service';
+import { FlashMessageService } from '../../services/flash-message/flash-message.service';
 
 @Component({
   selector: 'app-create-post',
@@ -39,7 +40,7 @@ export class CreatePostComponent {
 
   deviceType$: Observable<'mobile' | 'tablet' | 'desktop'>;
 
-  constructor(private postService: PostService, private router: Router, private loader: LoaderService, private breakpointObserver: BreakpointObserver) {
+  constructor(private postService: PostService, private router: Router, private loader: LoaderService, private flash: FlashMessageService, private breakpointObserver: BreakpointObserver) {
     this.deviceType$ = this.breakpointObserver
       .observe([
         '(max-width: 767.98px)', // mobile
@@ -166,13 +167,12 @@ export class CreatePostComponent {
         this.loading = false;
         this.loader.hide();
         this.clearForm();
+        this.flash.show('Post created successfully!', 'success');
       },
       error: (err) => {
-        this.error = err.status === 401 ?
-          'Unauthorized: Please log in with a user that can post.' :
-          'Failed to create post.';
         this.loading = false;
         this.loader.hide();
+        this.flash.show('Failed to create post', 'error');
         console.error(err);
       }
     });

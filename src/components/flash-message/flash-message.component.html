@@ -1,0 +1,19 @@
+<div
+  *ngIf="flashMessage"
+  class="wrapper"
+  [class.active]="flashMessage"
+  [class.success]="flashMessage!.type === 'success'"
+  [class.error]="flashMessage!.type === 'error'"
+>
+  <div class="icon-container" [class.success]="flashMessage!.type === 'success'" [class.error]="flashMessage!.type === 'error'">
+    <img
+      class="flash-icon"
+      [src]="'assets/icons/flash-' + flashMessage!.type + '.webp'"
+      alt="Flash icon"
+    />
+  </div>
+  <div class="text-container">
+    <h3 class="flash-header">{{ capitalize(flashMessage!.type) }}</h3>
+    <p class="flash-message">{{ flashMessage!.message }}</p>
+  </div>
+</div>

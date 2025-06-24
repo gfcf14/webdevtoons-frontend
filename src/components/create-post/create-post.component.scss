@@ -295,6 +295,9 @@ input[placeholder="Image"], input[placeholder="YYYY-MM-DD"] {
     color: #005a2b;
     display: flex;
     font: 400 1rem "Orbitron", sans-serif;
+    width: calc(10% - 0.5rem);
+  }
+  .cntr-speech-control.with-links {
     width: calc(10% + 0.5rem);
   }
 

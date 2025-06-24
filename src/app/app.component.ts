@@ -5,10 +5,11 @@ import { NavbarComponent } from '../components/navbar/navbar.component';
 import { FooterComponent } from '../components/footer/footer.component';
 import { filter } from 'rxjs';
 import { LoaderComponent } from '../components/loader/loader.component';
+import { FlashMessageComponent } from '../components/flash-message/flash-message.component';
 
 @Component({
   selector: 'app-root',
-  imports: [CommonModule, RouterOutlet, NavbarComponent, FooterComponent, LoaderComponent],
+  imports: [CommonModule, RouterOutlet, NavbarComponent, FooterComponent, LoaderComponent, FlashMessageComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
