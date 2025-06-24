@@ -31,7 +31,7 @@
 
 .overlay {
   align-items: flex-end; /* Text at bottom */
-  background: #00000080;
+  background: var(--color-black-50);
   box-sizing: border-box;
   display: flex;
   height: 100%;
@@ -44,8 +44,8 @@
   width: 100%;
 }
 .overlay-text {
-  color: white;
-  font-family: 'Roboto', sans-serif;
+  color: var(--color-white);
+  font-family: var(--font-primary);
   font-size: 0.9rem;
 }
 .overlay-text .date {

@@ -1,6 +1,6 @@
 .navbar {
   align-items: center;
-  background: linear-gradient(#005a2b, #006d42);
+  background: linear-gradient(var(--color-theme-primary-1), #006d42);
   display: flex;
   height: 2rem;
   justify-content: space-between;
@@ -20,8 +20,8 @@
 
     a, span {
       text-decoration: none;
-      color: #fff;
-      font: 600 1rem 'Orbitron', sans-serif;
+      color: var(--color-white);
+      font: 600 1rem var(--font-secondary);
       font-size: 0.75rem;
     }
   }

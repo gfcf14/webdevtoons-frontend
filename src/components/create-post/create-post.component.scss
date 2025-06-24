@@ -3,19 +3,19 @@ input[placeholder="Image"], input[placeholder="YYYY-MM-DD"] {
 }
 
 .btn-logout {
-  background: linear-gradient(to bottom, #981f00 5%, #a93600 100%);
+  background: linear-gradient(to bottom, var(--color-logout-gradient-top) 5%, var(--color-logout-gradient-bottom) 100%);
   border-radius: 0.25rem;
-  color: #fff;
+  color: var(--color-white);
   cursor: pointer;
   display: block;
-  font: 400 0.75rem 'Orbitron', sans-serif;
+  font: 400 0.75rem var(--font-secondary);
   padding: 0.25rem;
   position: absolute;
   right: 0;
 }
 
 .btn-add-link, .btn-calendar, .btn-mobile-preview {
-  background: #00b456;
+  background: var(--color-theme-primary-3);
   border-radius: 50%;
   display: flex;
   height: 1.75rem;
@@ -28,24 +28,24 @@ input[placeholder="Image"], input[placeholder="YYYY-MM-DD"] {
 }
 
 .btn-close-preview {
-	background: linear-gradient(to bottom, #005a2b 5%, #006d42 100%);
-	background-color: #005a2b;
+	background: linear-gradient(to bottom, var(--color-theme-primary-1) 5%, var(--color-theme-primary-2) 100%);
+	background-color: var(--color-theme-primary-1);
 	border-radius: 50%;
-	border: 0.0625rem solid #005a2b;
+	border: 0.0625rem solid var(--color-theme-primary-1);
 	display: inline-block;
 	cursor: pointer;
-	color: #ffffff;
+	color: var(--color-white);
   line-height: 1rem;
 	padding: 0.5rem;
   position: absolute;
   right: 0.5rem;
 	text-decoration: none;
-	text-shadow: 0 0.0625rem 0 #006d42;
+	text-shadow: 0 0.0625rem 0 var(--color-theme-primary-2);
   top: 0.5rem;
 }
 .btn-close-preview:hover {
-	background: linear-gradient(to bottom, #1da45c 5%, #16b979 100%);
-	background-color :#1da45c;
+	background: linear-gradient(to bottom, var(--color-button-preview-top) 5%, var(--color-button-preview-bottom) 100%);
+	background-color: var(--color-button-preview-top);
 }
 
 .btn-create-post {
@@ -60,7 +60,7 @@ input[placeholder="Image"], input[placeholder="YYYY-MM-DD"] {
 }
 
 .cntr-create-post-button {
-  background: #eef1ee;
+  background: var(--color-button-background);
   bottom: 2rem;
   padding: 0.5rem 0;
   position: fixed;
@@ -81,7 +81,7 @@ input[placeholder="Image"], input[placeholder="YYYY-MM-DD"] {
 }
 
 .cntr-link-list {
-  background: #aaaaaa;
+  background: var(--color-container);
   border-radius: 0.5rem;
   display: flex;
   flex-direction: column;
@@ -114,7 +114,7 @@ input[placeholder="Image"], input[placeholder="YYYY-MM-DD"] {
 }
 
 .cntr-preview {
-  background: #00000080;
+  background: var(--color-black-80);
   height: 100vh;
   padding: 6rem 2rem;
   position: absolute;
@@ -147,10 +147,10 @@ input[placeholder="Image"], input[placeholder="YYYY-MM-DD"] {
 }
 
 .frm-label {
-  color: #005a2b;
+  color: var(--color-theme-primary-1);
   display: flex;
   flex-direction: column;
-  font: 400 0.75rem 'Orbitron', sans-serif;
+  font: 400 0.75rem var(--font-secondary);
   margin: 0 0 1rem;
 }
 
@@ -204,7 +204,7 @@ input[placeholder="Image"], input[placeholder="YYYY-MM-DD"] {
 }
 
 .txt-error {
-  color: #800000;
+  color: var(--color-login-error);
   text-align: center;
 }
 
@@ -219,7 +219,7 @@ input[placeholder="Image"], input[placeholder="YYYY-MM-DD"] {
 
   .cntr-nonmobile-preview {
     aspect-ratio: 3 / 4;
-    background: #aaaaaa;
+    background: var(--color-container);
     border-radius: 0.5rem;
     display: flex;
     padding: 0.5rem;
@@ -250,7 +250,7 @@ input[placeholder="Image"], input[placeholder="YYYY-MM-DD"] {
 @media (min-width: 1024px) {
   label[for="date"] {
     align-items: center;
-    color: #005a2b;
+    color: var(--color-theme-primary-1);
     display: flex;
     font: 400 1rem "Orbitron", sans-serif;
     height: 2.25rem;
@@ -270,7 +270,7 @@ input[placeholder="Image"], input[placeholder="YYYY-MM-DD"] {
 
     label {
       align-items: center;
-      color: #005a2b;
+      color: var(--color-theme-primary-1);
       display: flex;
       font: 400 1rem "Orbitron", sans-serif;
       height: 2.25rem;
@@ -292,7 +292,7 @@ input[placeholder="Image"], input[placeholder="YYYY-MM-DD"] {
 
   .cntr-speech-control {
     align-items: flex-end;
-    color: #005a2b;
+    color: var(--color-theme-primary-1);
     display: flex;
     font: 400 1rem "Orbitron", sans-serif;
     width: calc(10% - 0.5rem);

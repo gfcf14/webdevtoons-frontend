@@ -34,15 +34,15 @@
 }
 
 .txt-join {
-  color: #005a2b;
-  font: 600 1.25rem 'Roboto', sans-serif;
+  color: var(--color-theme-primary-1);
+  font: 600 1.25rem var(--font-primary);
   margin: 0 auto;
   text-align: center;
 }
 
 .txt-title {
-  color: #005a2b;
-  font: 600 0.75rem 'Orbitron', sans-serif;
+  color: var(--color-theme-primary-1);
+  font: 600 0.75rem var(--font-secondary);
   font-size: 1.25rem;
   margin: 0 auto;
 }

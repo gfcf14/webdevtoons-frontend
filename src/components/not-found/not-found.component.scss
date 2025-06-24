@@ -1,16 +1,16 @@
 .code {
   animation: blur 1s linear infinite;
-  color: #e92d2d;
-  font: bold 32px 'Orbitron', sans-serif;
+  color: var(--color-theme-error);
+  font: bold 32px var(--font-secondary);
 }
 .code.warning {
-  color: #bf6830;
+  color: var(--color-404-warning);
 }
 .code.almost {
-  color: #d9a630;
+  color: var(--color-404-almost);
 }
 .code.ready {
-  color: #00805c;
+  color: var(--color-404-ready);
 }
 
 .scene {
@@ -22,8 +22,8 @@
 }
 
 .text {
-  color: #ffffff;
-  font: 24px 'Roboto', sans-serif;
+  color: var(--color-white);
+  font: 24px var(--font-primary);
   width: 180px;
 }
 
@@ -90,14 +90,14 @@
 }
 
 .wrapper {
-  background: #000000;
+  background: var(--color-black);
   height: 100vh;
   overflow: hidden;
   text-align: center;
   width: 100vw;
 }
 .wrapper.white {
-  background: #ffffff;
+  background: var(--color-white);
 }
 .wrapper:before {
   content: '';

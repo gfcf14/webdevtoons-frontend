@@ -1,5 +1,5 @@
 #loader {
-  background: #ffffff80;
+  background: var(--color-white-50);
   display: flex;
   height: 100vh;
   margin: auto;
@@ -13,7 +13,7 @@
   animation: spin 1s linear infinite;
   border: 0.25rem solid transparent;
   border-radius: 50%;
-  border-top: 0.25rem solid #005a2b;
+  border-top: 0.25rem solid var(--color-theme-primary-1);
   display: block;
   height: 6.25rem;
   margin: auto;
@@ -31,7 +31,7 @@
 .triple-spinner::before {
   -webkit-animation: spin 1.5s linear infinite;
   animation: spin 1.75s linear infinite;
-  border-top-color: #006d42;
+  border-top-color: var(--color-theme-primary-2);
   bottom: 0.3125rem;
   left: 0.3125rem;
   right: 0.3125rem;
@@ -40,7 +40,7 @@
 .triple-spinner::after {
   -webkit-animation: spin 0.75s linear infinite;
   animation: spin 0.875s linear infinite;
-  border-top-color: #00b456;
+  border-top-color: var(--color-theme-primary-3);
   bottom: 0.9375rem;
   left: 0.9375rem;
   right: 0.9375rem;

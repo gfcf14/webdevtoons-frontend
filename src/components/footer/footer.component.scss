@@ -1,5 +1,5 @@
 .cntr-footer {
-  background: linear-gradient(#005a2b, #006d42);
+  background: linear-gradient(var(--color-theme-primary-1), #006d42);
   bottom: 0;
   height: 1rem;
   padding: 0.5rem;
@@ -9,8 +9,8 @@
 }
 
 .link-greendream {
-  color: #ffffff;
-  font: 400 1rem 'Orbitron', sans-serif;
+  color: var(--color-white);
+  font: 400 1rem var(--font-secondary);
   font-size: 0.6rem;
   text-decoration: none;
 }
