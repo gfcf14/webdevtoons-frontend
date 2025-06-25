@@ -1,0 +1,27 @@
+.cntr-error {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.img-error {
+  width: 15rem;
+}
+
+.txt-error {
+  margin: 0;
+}
+
+@media (min-width: 768px) {
+  .img-error {
+    width: 20rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .img-error {
+    width: 25rem;
+  }
+}

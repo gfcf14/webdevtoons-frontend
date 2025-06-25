@@ -4,11 +4,12 @@ import { Post } from '../../models/post/post.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PostService } from '../../services/post/post.service';
 import { LoaderService } from '../../services/loader/loader.service';
+import { ErrorComponent } from '../error/error.component';
 
 @Component({
   selector: 'app-post-detail',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ErrorComponent],
   templateUrl: './post-detail.component.html',
   styleUrl: './post-detail.component.scss'
 })
@@ -20,6 +21,11 @@ export class PostDetailComponent {
   constructor(private route: ActivatedRoute, private postService: PostService, private loader: LoaderService, private router: Router) {}
 
   ngOnInit(): void {
+    this.fetchPost();
+  }
+
+  fetchPost() {
+    this.error = '';
     const urlParams = this.route.snapshot.paramMap;
     const date = urlParams.get('date');
 

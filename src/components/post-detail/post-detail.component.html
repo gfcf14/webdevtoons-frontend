@@ -1,4 +1,4 @@
-<div *ngIf="error">{{error}}</div>
+<app-error *ngIf="error" [retry]="fetchPost.bind(this)"></app-error>
 
 <div *ngIf="post && !loading && !error" class="cntr-detail">
   <h3 class="txt-title">{{post.title}} ({{post.date}})</h3>
