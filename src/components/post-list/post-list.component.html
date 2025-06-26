@@ -1,6 +1,6 @@
 <app-error *ngIf="error" [retry]="fetchPosts.bind(this)"></app-error>
 
-<ul *ngIf="loading" class="archive-grid">
+<ul *ngIf="!loading" class="archive-grid">
   <li *ngFor="let post of posts">
     <a [routerLink]="getLink(post.date)" class="link-post">
       <div class="cntr-image">
