@@ -12,9 +12,13 @@
 }
 
 .img-post {
-  aspect-ratio: 3 /4;
+  aspect-ratio: 3 / 4;
+  height: auto;
   margin: 0 auto;
-  width: 100%;
+  max-height: calc(100vh - 18.5rem);
+  max-width: 100%;
+  object-fit: contain;
+  width: auto;
 }
 
 .link-list {
@@ -47,17 +51,7 @@
   margin: 0 auto;
 }
 
-@media (min-width: 768px) {
-  .img-post {
-    width: 66%;
-  }
-}
-
 @media (min-width: 1024px) {
-  .img-post {
-    width: 30%;
-  }
-
   .link-list {
     width: 30%;
   }
