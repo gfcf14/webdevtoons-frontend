@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PostService } from '../../services/post/post.service';
 import { LoaderService } from '../../services/loader/loader.service';
 import { ErrorComponent } from '../error/error.component';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-post-detail',
@@ -18,9 +19,10 @@ export class PostDetailComponent {
   loading = true;
   error: string | null = null;
 
-  constructor(private route: ActivatedRoute, private postService: PostService, private loader: LoaderService, private router: Router) {}
+  constructor(private titleService: Title, private route: ActivatedRoute, private postService: PostService, private loader: LoaderService, private router: Router) {}
 
   ngOnInit(): void {
+    this.titleService.setTitle("WebDevToons: Loading Post");
     this.fetchPost();
   }
 
@@ -42,6 +44,7 @@ export class PostDetailComponent {
           this.post = data;
           this.loading = false;
           this.loader.hide();
+          this.titleService.setTitle(`WebDevToons: ${data.title} (${data.date})`);
         },
         error: (err) => {
           this.error = 'Failed to load post',

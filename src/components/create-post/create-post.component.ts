@@ -10,6 +10,7 @@ import { PostService } from '../../services/post/post.service';
 import { LoaderService } from '../../services/loader/loader.service';
 import { FlashMessageService } from '../../services/flash-message/flash-message.service';
 import { LoginService } from '../../services/login/login.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-create-post',
@@ -41,7 +42,7 @@ export class CreatePostComponent {
 
   deviceType$: Observable<'mobile' | 'tablet' | 'desktop'>;
 
-  constructor(private postService: PostService, private loginService: LoginService, private router: Router, private loader: LoaderService, private flash: FlashMessageService, private breakpointObserver: BreakpointObserver) {
+  constructor(private titleService: Title, private postService: PostService, private loginService: LoginService, private router: Router, private loader: LoaderService, private flash: FlashMessageService, private breakpointObserver: BreakpointObserver) {
     this.deviceType$ = this.breakpointObserver
       .observe([
         '(max-width: 767.98px)', // mobile
@@ -63,6 +64,8 @@ export class CreatePostComponent {
   }
 
   ngOnInit(): void {
+    this.titleService.setTitle("WebDevToons: STOP!");
+
     const token = sessionStorage.getItem('token');
 
     if (token) {
@@ -104,6 +107,8 @@ export class CreatePostComponent {
         this.isLoggedIn = true;
         this.loginError = null;
         this.loader.hide();
+
+        this.titleService.setTitle("WebDevToons: Create Post");
       },
       error: (err) => {
         this.loginError = 'Invalid credentials';

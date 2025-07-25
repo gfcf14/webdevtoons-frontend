@@ -5,6 +5,7 @@ import { PostService } from '../../services/post/post.service';
 import { RouterModule } from '@angular/router';
 import { LoaderService } from '../../services/loader/loader.service';
 import { ErrorComponent } from '../error/error.component';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-post-list',
@@ -18,9 +19,10 @@ export class PostListComponent implements OnInit {
   loading: boolean = false;
   error: boolean = false;
 
-  constructor(private postService: PostService, private loader: LoaderService) {}
+  constructor(private titleService: Title, private postService: PostService, private loader: LoaderService) {}
 
   ngOnInit(): void {
+    this.titleService.setTitle("WebDevToons");
     this.fetchPosts();
   }
 

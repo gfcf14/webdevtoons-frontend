@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 
 @Component({
@@ -17,9 +18,10 @@ export class NotFoundComponent implements OnInit, OnDestroy {
 
   private timeouts: any[] = [];
 
-  constructor(private router: Router) {}
+  constructor(private titleService: Title, private router: Router) {}
 
   ngOnInit(): void {
+    this.titleService.setTitle("WebDevToons: 404 not found");
     this.schedule();
   }
 
